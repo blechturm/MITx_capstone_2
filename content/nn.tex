@@ -25,8 +25,11 @@
 
 \newcommand{\ewise}[2]{{#1 * #2}} % element-wise product
 
+\newcommand{\EE}{\mathrm{E}} % Expectation
 
-\subsubsection {A fully connected FFNN} \label {sec: fcffnn}
+\newcommand{\g}{\,\vert\,} % for conditional probability, division
+
+\subsection {A fully connected FFNN} \label {sec: fcffnn}
 Forward propagation
 \begin {equation} \begin {split}
 & \text {Initialize the input layer } \vZ^1 = \vX, \vA^1 = \vZ^1 \\
@@ -78,3 +81,56 @@ Update ($\eta$ is a hyperparameter that is not learned by the FFNN)
 & \text {Update weights } \mW^l = \mW^l - \eta \frac {\partial \cL} {\partial \mW^l}, l \in [2, L] \\
 & \text {Update bias weights } \vB^l = \vB^l - \eta \frac {\partial \cL} {\partial \vB^l}, l \in [2, L] \\
 \end {split} \end {equation}
+
+\subsection {ATE abd Selection Bias} 
+When we observe a group of subjects, some of whom have been treated and some not, we calculate
+\begin {equation} \begin {split}
+& \EE(Y_i(1) \g  W_i = 1) - \EE(Y_i(0) \g  W_i = 0) \iff \\
+& [ \EE(Y_i(1) \g  W_i = 1) -  \EE(Y_i(0) \g  W_i = 1) ] +  \\
+& \qquad \EE(Y_i(0) \g  W_i = 1) -  \EE(Y_i(0) \g  W_i = 0) ] \iff  \\
+& \text {Average Treatment Effect} + \text { Selection Bias} \\
+\end {split} \end {equation}
+
+\subsection {Fixed effects model} \label {r: fem}
+G(factor(admin)) creates a dummy variable, one per region, and includes the dummy variable
+in the regression
+\begin{lstlisting}[language=R]
+library("lfe")
+model2 <- felm(sex ~ teasown + post + teapost + 
+G(factor(admin)), data = qiandata)
+summary(model2)
+\end{lstlisting}
+
+\subsection {Instrument variable regression}
+To use the ivreg() function directly one needs to setup the call as
+\begin{lstlisting}[language=R]
+ivreg (y ~ exogenous_vars + endogenous_var | 
+exogenous_vars + instrument_var)
+\end{lstlisting}
+
+\subsection {Fisher exact test in R}
+\begin{lstlisting}[language=R]
+library(perm)
+rm(list = ls())
+cough_severity = matrix(c(3, 5, 0, 4, 0, 1), nrow=6, ncol=1, byrow=TRUE)
+cough_severity
+n_treatment = 3
+n_control = 3
+n = n_treatment + n_control
+
+permutations = chooseMatrix(n, n_treatment)
+permutations
+num_permutations = nrow(permutations)
+
+treatment_avg = (1/n_treatment)* permutations %*%cough_severity
+
+control_avg = (1/n_control)*(1-permutations)%*%cough_severity
+
+test_statistic =  abs(treatment_avg-control_avg)
+
+actual_obs_row = 20
+observed_test_statistic = test_statistic[actual_obs_row]
+
+by_chance = (test_statistic >= observed_test_statistic)
+total_by_chance = sum(by_chance)
+\end{lstlisting}
