@@ -1,0 +1,80 @@
+% Vector variables (in Bold Font style)
+\newcommand{\va}{\mathbf{a}} \newcommand{\vb}{\mathbf{b}} \newcommand{\vc}{\mathbf{c}} \newcommand{\vd}{\mathbf{d}} \newcommand{\ve}{\mathbf{e}} \newcommand{\vf}{\mathbf{f}} \newcommand{\vg}{\mathbf{g}} \newcommand{\vh}{\mathbf{h}} \newcommand{\vi}{\mathbf{i}} \newcommand{\vj}{\mathbf{j}} \newcommand{\vk}{\mathbf{k}} \newcommand{\vl}{\mathbf{l}} \newcommand{\vm}{\mathbf{m}} \newcommand{\vn}{\mathbf{n}} \newcommand{\vo}{\mathbf{o}} \newcommand{\vp}{\mathbf{p}} \newcommand{\vq}{\mathbf{q}} \newcommand{\vr}{\mathbf{r}} \newcommand{\vs}{\mathbf{s}} \newcommand{\vt}{\mathbf{t}} \newcommand{\vu}{\mathbf{u}} \newcommand{\vv}{\mathbf{v}} \newcommand{\vw}{\mathbf{w}} \newcommand{\vx}{\mathbf{x}} \newcommand{\vy}{\mathbf{y}} \newcommand{\vz}{\mathbf{z}} 
+\newcommand{\vA}{\mathbf{A}} \newcommand{\vB}{\mathbf{B}} \newcommand{\vC}{\mathbf{C}} \newcommand{\vD}{\mathbf{D}} \newcommand{\vE}{\mathbf{E}} \newcommand{\vF}{\mathbf{F}} \newcommand{\vG}{\mathbf{G}} \newcommand{\vH}{\mathbf{H}} \newcommand{\vI}{\mathbf{I}} \newcommand{\vJ}{\mathbf{J}} \newcommand{\vK}{\mathbf{K}} \newcommand{\vL}{\mathbf{L}} \newcommand{\vM}{\mathbf{M}} \newcommand{\vN}{\mathbf{N}} \newcommand{\vO}{\mathbf{O}} \newcommand{\vP}{\mathbf{P}} \newcommand{\vQ}{\mathbf{Q}} \newcommand{\vR}{\mathbf{R}} \newcommand{\vS}{\mathbf{S}} \newcommand{\vT}{\mathbf{T}} \newcommand{\vU}{\mathbf{U}} \newcommand{\vV}{\mathbf{V}} \newcommand{\vW}{\mathbf{W}} \newcommand{\vX}{\mathbf{X}} \newcommand{\vY}{\mathbf{Y}} \newcommand{\vZ}{\mathbf{Z}} 
+% Greek Vector variables (in Bold Font style)
+\newcommand{\vbeta}{\bm{\beta}} 
+\newcommand{\vbhat}{\bm{\hat \beta}}
+\newcommand{\vbstar}{\bm{\beta^*}}
+\newcommand{\veps}{\bm{\epsilon}}
+\newcommand{\vmu}{\bm{\mu}}
+\newcommand{\vtheta}{\bm{\theta}}
+\newcommand{\valpha}{\bm{\alpha}}
+\newcommand{\vdelta}{\bm{\delta}}
+
+% Constant vectors
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vone}{\mathbf{1}}
+\newcommand{\thetac}{\mathrm{\theta^{(0)}}}
+
+% Scalars
+
+% Matrix variables (in DS style where possible)
+\newcommand{\mA}{\mathds{A}} \newcommand{\mB}{\mathds{B}} \newcommand{\mC}{\mathds{C}} \newcommand{\mD}{\mathds{D}} \newcommand{\mE}{\mathds{E}} \newcommand{\mF}{\mathds{F}} \newcommand{\mG}{\mathds{G}} \newcommand{\mH}{\mathds{H}} \newcommand{\mI}{\mathds{I}} \newcommand{\mJ}{\mathds{J}} \newcommand{\mK}{\mathds{K}} \newcommand{\mL}{\mathds{L}} \newcommand{\mM}{\mathds{M}} \newcommand{\mN}{\mathds{N}} \newcommand{\mO}{\mathds{O}} \newcommand{\mP}{\mathds{P}} \newcommand{\mQ}{\mathds{Q}} \newcommand{\mR}{\mathds{R}} \newcommand{\mS}{\mathds{S}} \newcommand{\mT}{\mathds{T}} \newcommand{\mU}{\mathds{U}} \newcommand{\mV}{\mathds{V}} \newcommand{\mW}{\mathds{W}} \newcommand{\mX}{\mathds{X}} \newcommand{\mY}{\mathds{Y}} \newcommand{\mZ}{\mathds{Z}}
+
+\newcommand{\cA}{\mathcal{A}} \newcommand{\cB}{\mathcal{B}} \newcommand{\cC}{\mathcal{C}} \newcommand{\cD}{\mathcal{D}} \newcommand{\cE}{\mathcal{E}} \newcommand{\cF}{\mathcal{F}} \newcommand{\cG}{\mathcal{G}} \newcommand{\cH}{\mathcal{H}} \newcommand{\cI}{\mathcal{I}} \newcommand{\cJ}{\mathcal{J}} \newcommand{\cK}{\mathcal{K}} \newcommand{\cL}{\mathcal{L}} \newcommand{\cM}{\mathcal{M}} \newcommand{\cN}{\mathcal{N}} \newcommand{\cO}{\mathcal{O}} \newcommand{\cP}{\mathcal{P}} \newcommand{\cQ}{\mathcal{Q}} \newcommand{\cR}{\mathcal{R}} \newcommand{\cS}{\mathcal{S}} \newcommand{\cT}{\mathcal{T}} \newcommand{\cU}{\mathcal{U}} \newcommand{\cV}{\mathcal{V}} \newcommand{\cW}{\mathcal{W}} \newcommand{\cX}{\mathcal{X}} \newcommand{\cY}{\mathcal{Y}} \newcommand{\cZ}{\mathcal{Z}}
+
+\newcommand{\ewise}[2]{{#1 * #2}} % element-wise product
+
+
+\subsubsection {A fully connected FFNN} \label {sec: fcffnn}
+Forward propagation
+\begin {equation} \begin {split}
+& \text {Initialize the input layer } \vZ^1 = \vX, \vA^1 = \vZ^1 \\
+& \text {Propagate all activity forward } \vZ^l = \mW^l \vA^{l-1} + \vB^l, \vA^l = f^l(\vZ^l) \\
+\end {split} \end {equation}
+
+$\vZ^l = \mW^l \vA^{l-1} + \vB^l$ is equivalent to 
+\begin{equation} \label {eq: nnwts}
+\begin{bmatrix}
+Z_1 \\
+\ldots \\
+Z_J \\
+\end{bmatrix}
+= 
+\begin{bmatrix}
+W_{1,1} & \ldots & W_{1,K} \\
+\ldots & \ldots & \ldots \\
+W_{J,1} & \ldots & W_{J,K} \\
+\end{bmatrix}
+\begin{bmatrix}
+A_1 \\
+\ldots \\
+A_K \\
+\end{bmatrix} 
++
+\begin{bmatrix}
+B_1 \\
+\ldots \\
+B_J \\
+\end{bmatrix}
+\end{equation}
+Where layer $l$ has $J$ nodes and layer $l-1$ has $K$ nodes.
+
+Backward propagation
+\begin {equation} \begin {split}
+& \text {Assuming that the loss function is } \cL = 0.5 (\vY - \vA^l)^2 \\
+& \qquad \text {Where $\vY$ is the known output corresponding to the input $\vX$} \\
+& \qquad \text {Calculate the final error } \nabla_a \cL =  \vA^l - \vY \\
+& \text {Initialize  the back propagation } \vdelta^L =  \ewise {\nabla_a \cL} {{f^L}^{'} (\vZ^L)} \\
+& \text {Backpropagate the error } \vdelta^l =  \ewise {\left[ {\mW^{l+1}}^T \vdelta^{l+1} \right]} {{f^{l}}^{'} (\vZ^l)}, l \in [2, L-1] \\
+& \text {Calculate the gradient of weights } \frac {\partial \cL} {\partial \mW^l} = \vdelta^l {\vA^{l-1}}^T, l \in [2, L] \\
+& \qquad \text {Equivalently } \frac {\partial \cL} {\partial W_{j,k}^l} = a_k^{l-1} \delta_j^l, l \in [2, L] \\
+& \text {Calculate the gradient of bias weights } \frac {\partial \cL} {\partial \vB^l} = \vdelta^l, l \in [2, L] \\
+& \qquad \text {Equivalently } \frac {\partial \cL} {\partial B_j^l} = \delta_j^l, l \in [2, L] \\
+\end {split} \end {equation}
+
+Update ($\eta$ is a hyperparameter that is not learned by the FFNN)
+\begin {equation} \begin {split}
+& \text {Update weights } \mW^l = \mW^l - \eta \frac {\partial \cL} {\partial \mW^l}, l \in [2, L] \\
+& \text {Update bias weights } \vB^l = \vB^l - \eta \frac {\partial \cL} {\partial \vB^l}, l \in [2, L] \\
+\end {split} \end {equation}
