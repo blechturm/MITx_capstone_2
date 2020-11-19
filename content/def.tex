@@ -29,8 +29,7 @@ leftmargin=0mm,rightmargin=0mm,skipbelow=0mm,skipabove=0mm,
 \begin{mdframed}[style=header]
 \footnotesize
 \sffamily
-Capstone-Cheatsheet Part 2\\
-by Blechturm,~Page~\thepage~of~2
+Capstone-Cheatsheet Part 2~Page~\thepage/2
 \end{mdframed}
 }
 
@@ -160,3 +159,15 @@ by Blechturm,~Page~\thepage~of~2
 
 \makeatother
 \setlength{\parindent}{0pt}
+
+
+%for code blocks. 
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
+

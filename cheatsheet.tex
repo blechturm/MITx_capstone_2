@@ -20,6 +20,14 @@
 \usepackage{bbm}
 \usepackage{enumerate} 
 
+% RD19
+\usepackage{dsfont}
+\usepackage{bm}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+
+% for code snippets
+\usepackage{listings}
+
 \let\bar\overline
 
 \include{content/def}
@@ -31,7 +39,7 @@
 \begin{document}
 %\footnotesize
 \small
-\begin{multicols*}{6}
+\begin{multicols*}{4}
 
 % multicol parameters
 % These lengths are set only within the two main columns
@@ -46,11 +54,6 @@
 %\input{content/expectation_variance}
 %\input{content/Covariance_Matrix}
 
-
-
-
-
-
 \input{content/basic_concepts}
 \input{content/linear_algebra}
 \input{content/regressions}
@@ -58,6 +61,8 @@
 \input{content/clustering}
 \input{content/generative_models}
 \input{content/reinforcement}
+\input{content/nn}
+
 %
 %
 %
